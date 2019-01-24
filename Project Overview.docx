@@ -1,0 +1,7 @@
+﻿						Project Overview
+	
+1) Our goal is to create a browser based slide puzzle game. 
+
+2) Slide puzzles are fun little distractions that many of us enjoyed growing up.  Creating a browser based slide puzzle seems to us, a feasible problem to solve and one that will allow us to adequately appreciate the principles of sound software engineering methodology.  
+
+3) Our tech stack will include HTML, CSS, and Javascript for the frontend, MySQL for the database component, and Java (or PHP?) for the backend.  
