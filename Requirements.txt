@@ -6,9 +6,20 @@ Andrew Dodel
 2. Upon selecting a difficulty, the game divides the chosen picture into an appropriate grid size. 
 3. Player information and highscores are sent and stored on a server, rather than placed in local storage. 
 
+Andrew Jia
+
+4. After dividing the picture, game will randomize positions of pieces.
+5. Player can click on a tile to move it to the empty space.
+6. Game will not allow players to move tiles that are not adjacent to the empty space.
+
 Non-functional Requirements:
 
 Andrew Dodel 
 
 1. The player should only be able to view their own highscores, and not those of another player unless it's the overall highscore for a given game type
 2. Game moves should have a sub 1 second response time.
+
+Andrew Jia
+
+3. Game is easy to understand and intuitive.
+4. Game is entertaining.
