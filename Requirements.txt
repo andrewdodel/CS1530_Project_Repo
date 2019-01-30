@@ -1,0 +1,14 @@
+Functional Requirements:
+
+Andrew Dodel
+
+1. The player can select, from the GUI, one of four different difficulties (easy - 5x5, medium - 7x7, hard - 10x10, or crazy - 15x15)
+2. Upon selecting a difficulty, the game divides the chosen picture into an appropriate grid size. 
+3. Player information and highscores are sent and stored on a server, rather than placed in local storage. 
+
+Non-functional Requirements:
+
+Andrew Dodel 
+
+1. The player should only be able to view their own highscores, and not those of another player unless it's the overall highscore for a given game type
+2. Game moves should have a sub 1 second response time.
