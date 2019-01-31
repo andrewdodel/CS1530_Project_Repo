@@ -12,6 +12,12 @@ Andrew Jia
 5. Player can click on a tile to move it to the empty space.
 6. Game will not allow players to move tiles that are not adjacent to the empty space.
 
+Brendan Campbell
+
+7. The player can provide a picture for use in creating the puzzle.
+8. Puzzles can be created using included default photos or the user's provided photo.
+9. The app will store pictures provided by the user for future use. 
+
 Non-functional Requirements:
 
 Andrew Dodel 
