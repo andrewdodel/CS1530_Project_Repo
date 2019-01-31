@@ -19,6 +19,13 @@ Brendan Campbell
 9. The app will store pictures provided by the user for future use. 
 10. There will be a tutorial teaching the player the objective of the puzzle and how to move the tiles around the board.
 
+Yuxin Zhang
+
+11. The app should store enough default photos for user to select. 
+12. The gallery should be categorized as nature, portrait, cartoon, customize…
+13. The score are calculate based on moves(timing).
+
+
 Non-functional Requirements:
 
 Andrew Dodel 
