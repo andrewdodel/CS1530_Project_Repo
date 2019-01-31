@@ -25,6 +25,12 @@ Yuxin Zhang
 12. The gallery should be categorized as nature, portrait, cartoon, customize…
 13. The score are calculate based on moves(timing).
 
+Sundar Sampath
+
+14. Upon successful completion of a game, the application shall display a congratulatory message to the user, displaying the score for that game.  
+15. After displaying a congratulatory message (following the sucessful completion of a game), the application shall allow the user to enter his/her name for score recording.  
+16. The player's current score shall be displayed and continuously updated both with the passing of every second and turn.  
+
 
 Non-functional Requirements:
 
@@ -42,3 +48,8 @@ Brendan Campbell
 
 5. The game will have a toggleable sound effect when a tile is moved.
 6. The game will be made to be played with a mouse.
+
+Sundar Sampath
+
+7. The game shall be reliable, having fewer than 1 crash per 100 games. 
+8. The game shall be extensible, the addition of new, modified game types should be seamless.  
