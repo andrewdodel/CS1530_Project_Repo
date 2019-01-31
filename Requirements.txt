@@ -53,3 +53,9 @@ Sundar Sampath
 
 7. The game shall be reliable, having fewer than 1 crash per 100 games. 
 8. The game shall be extensible, the addition of new, modified game types should be seamless.  
+
+Yuxin Zhang
+
+9. The interface should be clear easy to follow.
+10. The game should be easy to access.
+
