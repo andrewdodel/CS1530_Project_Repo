@@ -3,3 +3,5 @@ Includes relevant code and documentation for the Pitt CS 1530 project for our gr
 
 
 Currently working on: Requirements
+
+Completed: Project Overview
