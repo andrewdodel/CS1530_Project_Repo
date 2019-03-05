@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<body>
+
+<table>
+    <tr class=>
+        <td><div class="crop"><img id="t00" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t01" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t02" src="Colored_Zephyr_Symbol_300.png"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t10" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t11" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t12" src="Colored_Zephyr_Symbol_300.png"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t20" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t21" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+    </tr>
+</table>
+
+<script>
+// x,y is location of blank
+document.onkeydown = checkKey;
+var x = 2; // 0 is the left
+var y = 2; // 0 is the top
+var puzzleLength = 3;
+var puzzle = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
+var image = "Colored_Zephyr_Symbol_300.png";
+document.getElementById("t21").addEventListener("click", moveLeft);
+document.getElementById("t12").addEventListener("click", moveUp);
+
+// direction: the direction the BLANK tile is moving in. 0: Up, 1: Left, 2: Right, 3: Down
+function move(direction) {
+    console.log("move");
+    //Remove above blank
+    if(y != 0){
+        document.getElementById(("t" + (y-1)) + x).removeEventListener("click", moveUp);
+    }
+    //Remove left of blank
+    if(x != 0){
+        document.getElementById(("t" + y) + (x-1)).removeEventListener("click", moveLeft);
+    }
+    //Remove right of blank
+    if(x != puzzleLength-1){
+        document.getElementById(("t" + y) + (x+1)).removeEventListener("click", moveRight);
+    }
+    //Remove below blank
+    if(y != puzzleLength-1){
+        document.getElementById(("t" + (y+1)) + x).removeEventListener("click", moveDown);
+    }
+    //Edit xy, changing blank location
+    if(direction == 0) y = y-1;
+    if(direction == 1) x = x-1;
+    if(direction == 2) x = x+1;
+    if(direction == 3) y = y+1;
+    //add above blank
+    if(y != 0){
+        document.getElementById(("t" + (y-1)) + x).addEventListener("click", moveUp);
+    }
+    //add left of blank
+    if(x != 0){
+        document.getElementById(("t" + y) + (x-1)).addEventListener("click", moveLeft);
+    }
+    //add right of blank
+    if(x != puzzleLength-1){
+        document.getElementById(("t" + y) + (x+1)).addEventListener("click", moveRight);
+    }
+    //add below blank
+    if(y != puzzleLength-1){
+        document.getElementById(("t" + (y+1)) + x).addEventListener("click", moveDown);
+    }
+    //change images/css/array
+    if(direction == 0){
+        document.getElementById(("t" + (y+1)) + x).src = image;
+        document.getElementById(("t" + (y+1)) + x).style.margin = (puzzle[y][x][0]*(-100) + "px 0 0 ") + puzzle[y][x][1]*(-100) + "px";
+        puzzle[y+1][x] = puzzle[y][x];
+    }
+    if(direction == 1){
+        document.getElementById(("t" + y) + (x+1)).src = image;
+        document.getElementById(("t" + y) + (x+1)).style.margin = (puzzle[y][x][0]*(-100) + "px 0 0 ") + puzzle[y][x][1]*(-100) + "px";
+        puzzle[y][x+1] = puzzle[y][x];
+    }
+    if(direction == 2){
+        document.getElementById(("t" + y) + (x-1)).src = image;
+        document.getElementById(("t" + y) + (x-1)).style.margin = (puzzle[y][x][0]*(-100) + "px 0 0 ") + puzzle[y][x][1]*(-100) + "px";
+        puzzle[y][x-1] = puzzle[y][x];
+    }
+    if(direction == 3){
+        document.getElementById(("t" + (y-1)) + x).src = image;
+        document.getElementById(("t" + (y-1)) + x).style.margin = (puzzle[y][x][0]*(-100) + "px 0 0 ") + puzzle[y][x][1]*(-100) + "px";
+        puzzle[y-1][x] = puzzle[y][x];
+    }
+    document.getElementById(("t" + y) + x).src = "Blank.png";
+    document.getElementById(("t" + y) + x).style.margin = "0 0 0 0";
+    puzzle[y][x] = [puzzleLength-1, puzzleLength-1];
+    // ASSUMPTION: BLANK PIECE ALWAYS STARTS IN BOTTOM RIGHT!!!
+
+    console.log(puzzle);
+    console.log(y);
+    console.log(x);
+}
+
+function checkKey(e) {
+  switch(e.keyCode) {
+    case 37:
+      if (x < 2) {
+        moveRight();
+      }
+      break
+    case 38:
+      if (y < 2) {
+        moveDown();
+      }
+      break;
+    case 39:
+      if (x > 0) {
+      moveLeft();
+      }
+      break;
+    case 40:
+      if (y > 0) {
+      moveUp();
+      }
+      break;
+    }
+}
+
+function moveUp(){move(0);}
+function moveLeft(){move(1);}
+function moveRight(){move(2);}
+function moveDown(){move(3);}
+
+</script>
+
+</body>
+</html>
