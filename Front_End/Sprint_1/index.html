@@ -5,7 +5,27 @@
 </head>
 <body>
 
-<table>
+<table class = "gameTable">
+  <caption> Game </caption>
+    <tr class=>
+        <td><div class="crop"><img id="t00" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t01" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t02" src="Colored_Zephyr_Symbol_300.png"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t10" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t11" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t12" src="Colored_Zephyr_Symbol_300.png"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t20" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t21" src="Colored_Zephyr_Symbol_300.png"></div></td>
+        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+    </tr>
+</table>
+
+<table style ="float: right;">
+    <caption> Completed Picture</caption>
     <tr class=>
         <td><div class="crop"><img id="t00" src="Colored_Zephyr_Symbol_300.png"></div></td>
         <td><div class="crop"><img id="t01" src="Colored_Zephyr_Symbol_300.png"></div></td>
@@ -30,10 +50,14 @@ var x = 2; // 0 is the left
 var y = 2; // 0 is the top
 var puzzleLength = 3;
 var puzzle = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
+var completed = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
 var image = "Colored_Zephyr_Symbol_300.png";
+start = false;
 document.getElementById("t21").addEventListener("click", moveLeft);
 document.getElementById("t12").addEventListener("click", moveUp);
-
+if (shuffle()) {
+  start = true;
+}
 // direction: the direction the BLANK tile is moving in. 0: Up, 1: Left, 2: Right, 3: Down
 function move(direction) {
     console.log("move");
@@ -99,30 +123,39 @@ function move(direction) {
     document.getElementById(("t" + y) + x).style.margin = "0 0 0 0";
     puzzle[y][x] = [puzzleLength-1, puzzleLength-1];
     // ASSUMPTION: BLANK PIECE ALWAYS STARTS IN BOTTOM RIGHT!!!
-
     console.log(puzzle);
     console.log(y);
     console.log(x);
+    //Check if board is solved AFTER all previous code is executed
+    setTimeout(function () {
+      if (isCompleted() && start) {
+        alert("Congrats, done");
+      }
+    }, 1);
 }
 
 function checkKey(e) {
   switch(e.keyCode) {
     case 37:
+      //Check that you can move right
       if (x < 2) {
         moveRight();
       }
-      break
+      break;
     case 38:
+    //Check that you can move down
       if (y < 2) {
         moveDown();
       }
       break;
     case 39:
+    //Check that you can move left
       if (x > 0) {
       moveLeft();
       }
       break;
     case 40:
+    //Check that you can move up
       if (y > 0) {
       moveUp();
       }
@@ -130,7 +163,49 @@ function checkKey(e) {
     }
 }
 
-function moveUp(){move(0);}
+//Shuffles the game board by making a series of pseudo random moves
+
+function shuffle() {
+  var i;
+  for (i = 0; i < 150; i++) {
+    var dir = Math.floor((Math.random() * 4));
+    if (dir == 0 && x < 2) {
+      moveRight();
+    }
+    else if (dir == 1 && y < 2) {
+      moveDown();
+    }
+    else if (dir == 2 && x > 0) {
+      moveLeft();
+    }
+    else if (dir == 3 && y > 0) {
+      moveUp()
+    }
+  }
+  if (isCompleted() == true) {
+    shuffle();
+  }
+  else {
+  }
+  return true;
+}
+
+//Checks if current state of board is completed/in original state
+function isCompleted() {
+  var i;
+  var c;
+  //
+  for (i = 0; i < puzzleLength; i++) {
+    for (c = 0; c < puzzleLength; c++) {
+      if (puzzle[i][c].toString() != completed[i][c].toString()) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function moveUp(){ move(0);}
 function moveLeft(){move(1);}
 function moveRight(){move(2);}
 function moveDown(){move(3);}
