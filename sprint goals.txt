@@ -1,0 +1,20 @@
+
+- 15
+1. 
+database picture uplkoad - 6
+
+2. 
+database store highscores - 2
+
+3. 
+database add score to highscores - 4
+
+4.
+clientside CSS improvement - 3
+
+5.
+client timer + game finish
+
+https://www.w3schools.com/howto/howto_js_countdown.asp
+https://stackoverflow.com/questions/21815323/have-sound-play-when-alert-is-triggered
++remove all listeners
