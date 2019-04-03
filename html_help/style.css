@@ -1,0 +1,27 @@
+
+body{
+	background-image: url("image/mainBack.jpg");
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.button{
+	background-image: linear-gradient(to right,#FFA500, #FFDF00, #FFA500);
+	height:40px;
+	width: 400px;
+	border-radius: 10px;
+	text-shadow: 3px 2px 1px #9daef5;
+	font-family: Arial;
+	color: #fafafa;
+	font-size: 27px;
+	padding: 19px;
+	text-decoration: none;
+}
+
+.user {
+	position: fixed;
+	top: 0;
+	right:0;
+}
