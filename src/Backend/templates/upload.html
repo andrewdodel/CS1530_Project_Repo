@@ -1,0 +1,18 @@
+{% extends "header.html" %}
+{% block body %}
+	{% if error %}
+		<br/>
+		<br/>
+		{{error}}
+		<br/>
+		<br/>
+	{% endif %}
+	Do you wanna upload a picture?
+	<br/>
+	<form method="post" enctype=multipart/form-data>
+		Picture Upload:  
+			<p><input type=file name=file>
+			<input type=submit value=Upload>
+	</form>
+	</br> 
+{% endblock %}

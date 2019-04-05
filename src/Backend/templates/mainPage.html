@@ -2,9 +2,15 @@
 {% block body %}
 	What do you wanna do?
 	<br/>
-	<a href={{ url_for('login')}}>Log In</a>
-	</br>
-	<br/>
-	<a href={{ url_for('signup')}}>Create Account</a>
-	</br> 
+	{% if username %}
+		<a href={{ url_for('upload')}}>Click here to upload a picture</a>
+		<br/>
+		<a href={{url_for("logout")}}>Click here to log out.</a>
+		</br>
+	{% else %}
+		<a href={{ url_for('login')}}>Log In</a>
+		<br/>
+		<a href={{ url_for('signup')}}>Create Account</a>
+		</br> 
+	{% endif %}
 {% endblock %}
