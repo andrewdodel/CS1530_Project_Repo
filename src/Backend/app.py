@@ -2,6 +2,7 @@ import os
 import datetime
 from flask import Flask, request, session, url_for, redirect, render_template, abort, g, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+
 from werkzeug.utils import secure_filename
 ############################################################################################
 #put these 2 lines into terminal before running
@@ -15,10 +16,11 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = "Gallia est omnis divisia in partes tres"
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'app.db')
-UPLOAD_FOLDER = os.path.join(app.root_path, 'uploads')
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static')
 print(SQLALCHEMY_DATABASE_URI)
 print(UPLOAD_FOLDER)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 app.config.from_object(__name__)
 app.config['TESTING'] = True
@@ -135,6 +137,10 @@ def signup():
             return redirect(url_for('mainPage', username = request.form['user']))
 
     return render_template('signup.html', error=error)
+
+@app.route('/game/')
+def game():
+    return render_template('game.html')
 
 @app.route('/logout/')
 def logout():
