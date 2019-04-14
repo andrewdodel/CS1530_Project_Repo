@@ -10,6 +10,8 @@
 
 <p id="timer">0:00</p>
 
+<input type="checkbox" id="muteCheck">
+
 <table class = "gameTable">
   <caption> Game </caption>
     <tr class=>
@@ -84,7 +86,9 @@ var intervalVar = setInterval(function(){
 function move(direction) {
     console.log("move");
     if (document.getElementById("moveSound").paused) {
-      document.getElementById("moveSound").play();
+      if(document.getElementById("muteCheck").checked != true){
+          document.getElementById("moveSound").play();
+        }
     }else{
       document.getElementById("moveSound").currentTime = 0
     }
@@ -157,7 +161,9 @@ function move(direction) {
     setTimeout(function () {
       if (isCompleted() && start) {
         clearInterval(intervalVar);
-        document.getElementById("winSound").play();
+        if(document.getElementById("muteCheck").checked != true){
+          document.getElementById("winSound").play();
+        }
         alert("Congrats, done");
       }
     }, 1);
