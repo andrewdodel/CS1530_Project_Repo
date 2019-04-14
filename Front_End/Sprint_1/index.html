@@ -5,6 +5,10 @@
 </head>
 <body>
 
+<audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
+
+<p id="timer">0:00</p>
+
 <table class = "gameTable">
   <caption> Game </caption>
     <tr class=>
@@ -58,6 +62,23 @@ document.getElementById("t12").addEventListener("click", moveUp);
 if (shuffle()) {
   start = true;
 }
+var startTime = new Date().getTime();
+console.log(startTime);
+
+var intervalVar = setInterval(function(){
+  var currTime = new Date().getTime();
+  var timeElapsed = currTime - startTime;
+  var seconds = Math.floor((timeElapsed % (1000 * 60)) / 1000);
+  var minutes = Math.floor(timeElapsed / (1000 * 60));
+  
+  if(seconds >= 10){
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+  }
+  else{
+    document.getElementById("timer").innerHTML = minutes + ":0" + seconds;
+  }
+}, 1000)
+
 // direction: the direction the BLANK tile is moving in. 0: Up, 1: Left, 2: Right, 3: Down
 function move(direction) {
     console.log("move");
@@ -129,6 +150,8 @@ function move(direction) {
     //Check if board is solved AFTER all previous code is executed
     setTimeout(function () {
       if (isCompleted() && start) {
+        clearInterval(intervalVar);
+        document.getElementById("winSound").play();
         alert("Congrats, done");
       }
     }, 1);
