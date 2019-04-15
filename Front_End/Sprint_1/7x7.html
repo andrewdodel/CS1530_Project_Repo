@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css.7x7.css">
+</head>
+<body>
+
+<audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
+<audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
+
+<p id="timer">0:00</p>
+
+Mute:<input type="checkbox" id="muteCheck">
+
+<table class = "gameTable" style ="float: left">
+  <caption> Game </caption>
+    <tr class=>
+        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t04" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t05" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t06" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t14" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t15" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t16" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t24" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t25" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t26" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t33" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t34" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t35" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t36" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t40" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t41" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t42" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t43" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t44" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t45" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t46" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t50" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t51" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t52" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t53" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t54" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t55" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t56" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t60" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t61" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t62" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t63" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t64" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t65" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t66" src="Blank.png"></div></td>
+    </tr>
+</table>
+
+<table style ="float: right;">
+    <caption> Completed Picture</caption>
+    <tr class=>
+        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t04" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t05" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t06" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t14" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t15" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t16" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t24" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t25" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t26" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t33" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t34" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t35" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t36" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t40" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t41" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t42" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t43" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t44" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t45" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t46" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t50" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t51" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t52" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t53" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t54" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t55" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t56" src="clouds-country-daylight-371633.jpg"></div></td>
+    </tr>
+    <tr>
+        <td><div class="crop"><img id="t60" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t61" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t62" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t63" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t64" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t65" src="clouds-country-daylight-371633.jpg"></div></td>
+        <td><div class="crop"><img id="t66" src="Blank.png"></div></td>
+    </tr>
+</table>
+</table>
+
+<script>
+// x,y is location of blank
+document.onkeydown = checkKey;
+var x = 6; // 0 is the left
+var y = 6; // 0 is the top
+var puzzleLength = 7;
+var puzzle = [
+  [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]],
+  [[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6]],
+  [[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6]],
+  [[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6]],
+  [[4,0],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6]],
+  [[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6]],
+  [[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[6,6]]
+  ];
+var completed = [
+  [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6]],
+  [[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6]],
+  [[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6]],
+  [[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6]],
+  [[4,0],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6]],
+  [[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6]],
+  [[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[6,6]]
+  ];
+var image = "clouds-country-daylight-371633.jpg";
+start = false;
+document.getElementById("t65").addEventListener("click", moveLeft);
+document.getElementById("t56").addEventListener("click", moveUp);
+if (shuffle()) {
+  start = true;
+}
+var startTime = new Date().getTime();
+console.log(startTime);
+
+var intervalVar = setInterval(function(){
+  var currTime = new Date().getTime();
+  var timeElapsed = currTime - startTime;
+  var seconds = Math.floor((timeElapsed % (1000 * 60)) / 1000);
+  var minutes = Math.floor(timeElapsed / (1000 * 60));
+  
+  if(seconds >= 10){
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+  }
+  else{
+    document.getElementById("timer").innerHTML = minutes + ":0" + seconds;
+  }
+}, 1000)
+
+// direction: the direction the BLANK tile is moving in. 0: Up, 1: Left, 2: Right, 3: Down
+function move(direction) {
+    console.log("move");
+    if (document.getElementById("moveSound").paused) {
+      if(document.getElementById("muteCheck").checked != true){
+          document.getElementById("moveSound").play();
+        }
+    }else{
+      document.getElementById("moveSound").currentTime = 0;
+    }
+    //Remove above blank
+    if(y != 0){
+        document.getElementById(("t" + (y-1)) + x).removeEventListener("click", moveUp);
+    }
+    //Remove left of blank
+    if(x != 0){
+        document.getElementById(("t" + y) + (x-1)).removeEventListener("click", moveLeft);
+    }
+    //Remove right of blank
+    if(x != puzzleLength-1){
+        document.getElementById(("t" + y) + (x+1)).removeEventListener("click", moveRight);
+    }
+    //Remove below blank
+    if(y != puzzleLength-1){
+        document.getElementById(("t" + (y+1)) + x).removeEventListener("click", moveDown);
+    }
+    //Edit xy, changing blank location
+    if(direction == 0) y = y-1;
+    if(direction == 1) x = x-1;
+    if(direction == 2) x = x+1;
+    if(direction == 3) y = y+1;
+    //add above blank
+    if(y != 0){
+        document.getElementById(("t" + (y-1)) + x).addEventListener("click", moveUp);
+    }
+    //add left of blank
+    if(x != 0){
+        document.getElementById(("t" + y) + (x-1)).addEventListener("click", moveLeft);
+    }
+    //add right of blank
+    if(x != puzzleLength-1){
+        document.getElementById(("t" + y) + (x+1)).addEventListener("click", moveRight);
+    }
+    //add below blank
+    if(y != puzzleLength-1){
+        document.getElementById(("t" + (y+1)) + x).addEventListener("click", moveDown);
+    }
+    //change images/css/array
+    if(direction == 0){
+        document.getElementById(("t" + (y+1)) + x).src = image;
+        document.getElementById(("t" + (y+1)) + x).style.margin = (puzzle[y][x][0]*(-50) + "px 0 0 ") + puzzle[y][x][1]*(-50) + "px";
+        puzzle[y+1][x] = puzzle[y][x];
+    }
+    if(direction == 1){
+        document.getElementById(("t" + y) + (x+1)).src = image;
+        document.getElementById(("t" + y) + (x+1)).style.margin = (puzzle[y][x][0]*(-50) + "px 0 0 ") + puzzle[y][x][1]*(-50) + "px";
+        puzzle[y][x+1] = puzzle[y][x];
+    }
+    if(direction == 2){
+        document.getElementById(("t" + y) + (x-1)).src = image;
+        document.getElementById(("t" + y) + (x-1)).style.margin = (puzzle[y][x][0]*(-50) + "px 0 0 ") + puzzle[y][x][1]*(-50) + "px";
+        puzzle[y][x-1] = puzzle[y][x];
+    }
+    if(direction == 3){
+        document.getElementById(("t" + (y-1)) + x).src = image;
+        document.getElementById(("t" + (y-1)) + x).style.margin = (puzzle[y][x][0]*(-50) + "px 0 0 ") + puzzle[y][x][1]*(-50) + "px";
+        puzzle[y-1][x] = puzzle[y][x];
+    }
+    document.getElementById(("t" + y) + x).src = "Blank.png";
+    document.getElementById(("t" + y) + x).style.margin = "0 0 0 0";
+    puzzle[y][x] = [puzzleLength-1, puzzleLength-1];
+    // ASSUMPTION: BLANK PIECE ALWAYS STARTS IN BOTTOM RIGHT!!!
+    console.log(puzzle);
+    console.log(y);
+    console.log(x);
+    //Check if board is solved AFTER all previous code is executed
+    setTimeout(function () {
+      if (isCompleted() && start) {
+        clearInterval(intervalVar);
+        if(document.getElementById("muteCheck").checked != true){
+          document.getElementById("winSound").play();
+        }
+        alert("Congrats, done");
+      }
+    }, 1);
+}
+
+function checkKey(e) {
+  switch(e.keyCode) {
+    case 37:
+      //Check that you can move right
+      if (x < 6) {
+        moveRight();
+      }
+      break;
+    case 38:
+    //Check that you can move down
+      if (y < 6) {
+        moveDown();
+      }
+      break;
+    case 39:
+    //Check that you can move left
+      if (x > 0) {
+      moveLeft();
+      }
+      break;
+    case 40:
+    //Check that you can move up
+      if (y > 0) {
+      moveUp();
+      }
+      break;
+    }
+}
+
+//Shuffles the game board by making a series of pseudo random moves
+
+function shuffle() {
+  var i;
+  for (i = 0; i < 1000; i++) {
+    var dir = Math.floor((Math.random() * 4));
+    if (dir == 0 && x < 6) {
+      moveRight();
+    }
+    else if (dir == 1 && y < 6) {
+      moveDown();
+    }
+    else if (dir == 2 && x > 0) {
+      moveLeft();
+    }
+    else if (dir == 3 && y > 0) {
+      moveUp()
+    }
+  }
+  if (isCompleted() == true) {
+    shuffle();
+  }
+  else {
+  }
+  return true;
+}
+
+//Checks if current state of board is completed/in original state
+function isCompleted() {
+  var i;
+  var c;
+  //
+  for (i = 0; i < puzzleLength; i++) {
+    for (c = 0; c < puzzleLength; c++) {
+      if (puzzle[i][c].toString() != completed[i][c].toString()) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function moveUp(){ move(0);}
+function moveLeft(){move(1);}
+function moveRight(){move(2);}
+function moveDown(){move(3);}
+
+</script>
+
+</body>
+</html>
