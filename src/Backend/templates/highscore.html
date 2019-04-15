@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+{% block body %}
+	Look at these recently selected games...
+	<br/>
+	{% if nameList %}
+		<br/>
+		<ul id="gameList">
+		{% for each in nameList %}
+			<li><h3>{{ each }}</h3><img src="/static/{{ each }}" id="{{ each }}" width="20%" height="auto"></li>
+		{% endfor %}
+		</ul>
+		<br/>
+	{% endif %}
+	Know what board you want to view the highscores for? Enter here to see.
+	<form action="" method="post">
+		Board Name: <input type ="text" name="name"/>
+		<br/>
+		<input type="submit" value="Search"/>
+	</form>
+	</br> 
+	{% if easyList %}
+		<br/>
+		<ol id="ezList">
+		{% for each in easyList %}
+			<li><h3>{{ each }}</li>
+		{% endfor %}
+		</ol>
+		<br/>
+	{% endif %}
+	{% if mediumList %}
+		<br/>
+		<ol id="mdList">
+		{% for each in mediumList %}
+			<li><h3>{{ each }}</li>
+		{% endfor %}
+		</ol>
+		<br/>
+	{% endif %}
+	{% if hardList %}
+		<br/>
+		<ol id="hdList">
+		{% for each in hardList %}
+			<li><h3>{{ each }}</li>
+		{% endfor %}
+		</ol>
+		<br/>
+	{% endif %}
+	{% if ultraList %}
+		<br/>
+		<ol id="uaList">
+		{% for each in ultraList %}
+			<li><h3>{{ each }}</li>
+		{% endfor %}
+		</ol>
+		<br/>
+	{% endif %}
+{% endblock %}

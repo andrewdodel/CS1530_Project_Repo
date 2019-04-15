@@ -1,6 +1,20 @@
 {% extends "header.html" %}
 {% block body %}
 	Picture Here!
+	<script>
+	var xhr = new XMLHttpRequest();
+	var url = "http://127.0.0.1:5000/game/";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4 && xhr.status === 200) 
+		{
+			//do nothing
+		}
+	};
+	var data = JSON.stringify({"score": 55, "boardName": "324231.jpg"});
+	xhr.send(data);
+	</script>
 	<br/>
 	<img src="/static/324231.jpg" alt="324231" width="20%" height="auto">
 	</br> 

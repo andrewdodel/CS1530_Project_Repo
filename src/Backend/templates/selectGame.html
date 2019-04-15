@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+{% block body %}
+	Look at these recently selected games...
+	<br/>
+	{% if nameList %}
+		<br/>
+		<ul id="gameList">
+		{% for each in nameList %}
+			<li><h3>{{ each }}</h3><img src="/static/{{ each }}" id="{{ each }}" width="20%" height="auto"></li>
+		{% endfor %}
+		</ul>
+		<br/>
+	{% endif %}
+	Know what game you want to play? Enter the name here and select a game size to begin.
+	<form action="" method="post">
+		Board Name: <input type ="text" name="name"/>
+		<br/>
+		Difficulty: 	<select name="diff">
+						<option  value="easy">Easy</option>
+						<option  value="medium">Medium</option>
+						<option  value="hard">Hard</option>
+						<option  value="ultra">Ultra</option>
+					</select>
+		<input type="submit" value="Start"/>
+	</form>
+	</br> 
+{% endblock %}

@@ -1,7 +1,8 @@
 import os
 import datetime
-from flask import Flask, request, session, url_for, redirect, render_template, abort, g, send_from_directory
+from flask import Flask, request, session, url_for, redirect, render_template, abort, g, send_from_directory, request
 from flask_sqlalchemy import SQLAlchemy
+from random import randint
 
 from werkzeug.utils import secure_filename
 ############################################################################################
@@ -23,7 +24,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 app.config.from_object(__name__)
-app.config['TESTING'] = True
+app.config['TESTING'] = False
+app.config['DEBUG'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.debug = True
 db = SQLAlchemy(app)
@@ -32,6 +34,7 @@ boardList = db.Table('boardList',
                             db.Column('boardId', db.Integer, db.ForeignKey('board.boardId')),
                             db.Column('userId', db.Integer, db.ForeignKey('user.userId'))
                      )
+
 
 class User(db.Model):
     userId = db.Column(db.Integer, primary_key=True)
@@ -138,9 +141,42 @@ def signup():
 
     return render_template('signup.html', error=error)
 
-@app.route('/game/')
+@app.route('/game/', methods=['GET', 'POST'])
 def game():
-    return render_template('game.html')
+    if request.method == 'POST':
+        if g.user is not None:
+            gameData = request.json
+            print(gameData['score'])
+            return render_template('game.html')
+    else:
+        return render_template('game.html')
+
+@app.route('/selectGame/', methods=['GET', 'POST'])
+def selectGame():
+    if request.method == 'POST':
+        boardName = request.form['name']
+        boardDifficulty = request.form['diff']
+        if boardName is None:
+            return render_template('selectGame.html', error="Select a game board before beginning!")
+        if boardDifficulty == "easy":
+            return redirect(url_for('easyGame', boardName=boardName))
+        elif boardDifficulty == "medium":
+            return redirect(url_for('mediumGame', boardName=boardName))
+        elif boardDifficulty == "hard":
+            return redirect(url_for('hardGame', boardName=boardName))
+        elif boardDifficulty == "ultra":
+            return redirect(url_for('ultraGame', boardName=boardName))
+        else:
+            return redirect(url_for('mainPage'))
+    else:
+        nameList = []
+        start = len(Board.query.all())
+        i = start
+        while (i > start - 5):
+            nameList.append(Board.query.filter_by(boardId = i).first().name)
+            i = i - 1
+        print(nameList)
+        return render_template('selectGame.html', nameList = nameList)
 
 @app.route('/logout/')
 def logout():
@@ -215,4 +251,4 @@ def updateHS(bigString, user, score):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
