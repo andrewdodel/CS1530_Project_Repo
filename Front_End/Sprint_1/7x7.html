@@ -178,6 +178,7 @@ document.getElementById("t56").addEventListener("click", moveUp);
 if (shuffle()) {
   start = true;
 }
+var hasWon = false;
 var startTime = new Date().getTime();
 console.log(startTime);
 
@@ -272,7 +273,8 @@ function move(direction) {
     console.log(x);
     //Check if board is solved AFTER all previous code is executed
     setTimeout(function () {
-      if (isCompleted() && start) {
+      if (isCompleted() && start && !hasWon) {
+        hasWon = true;
         clearInterval(intervalVar);
         if(document.getElementById("muteCheck").checked != true){
           document.getElementById("winSound").play();
