@@ -1,67 +1,79 @@
+{% extends "header.html" %}
+{% block body %}
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css.3x3.css">
+    <link rel="stylesheet" type="text/css" href="css.4x4.css">
 </head>
 <body>
 
 <audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
 
-<p id="timer">0:00</p>
-
-Mute:<input type="checkbox" id="muteCheck">
-
-<table class = "gameTable">
-  <caption> Game </caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
+<table class = "pageLayout">
     <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
-    </tr>
-</table>
-
-<table style ="float: right;">
-    <caption> Completed Picture</caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+      <td class = "timerCell" align = center>
+          <p id="timer">0:00</p>
+          <div align = center>Mute:<input type="checkbox" id="muteCheck"></div>
+      </td>
+      <td class = "gameCell">
+          <table class = "gameTable" align = center>
+              <tr class=>
+                  <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t33" src="Blank.png"></div></td>
+              </tr>
+            </table>
+      </td>
+      <td class = pictureCell>
+          <table>
+              <div class="crop2"><img src="clouds-country-daylight-371633.jpg"></div>
+          </table>
+      </td>
     </tr>
 </table>
 
 <script>
 // x,y is location of blank
 document.onkeydown = checkKey;
-var x = 2; // 0 is the left
-var y = 2; // 0 is the top
-var puzzleLength = 3;
-var puzzle = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
-var completed = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
+var x = 3; // 0 is the left
+var y = 3; // 0 is the top
+var puzzleLength = 4;
+var puzzle = [
+  [[0,0],[0,1],[0,2],[0,3]],
+  [[1,0],[1,1],[1,2],[1,3]],
+  [[2,0],[2,1],[2,2],[2,3]],
+  [[3,0],[3,1],[3,2],[3,3]],
+  ];
+var completed = [
+  [[0,0],[0,1],[0,2],[0,3]],
+  [[1,0],[1,1],[1,2],[1,3]],
+  [[2,0],[2,1],[2,2],[2,3]],
+  [[3,0],[3,1],[3,2],[3,3]],
+  ];
 var image = "clouds-country-daylight-371633.jpg";
 start = false;
-document.getElementById("t21").addEventListener("click", moveLeft);
-document.getElementById("t12").addEventListener("click", moveUp);
+document.getElementById("t32").addEventListener("click", moveLeft);
+document.getElementById("t23").addEventListener("click", moveUp);
 if (shuffle()) {
   start = true;
 }
@@ -91,7 +103,7 @@ function move(direction) {
           document.getElementById("moveSound").play();
         }
     }else{
-      document.getElementById("moveSound").currentTime = 0
+      document.getElementById("moveSound").currentTime = 0;
     }
     //Remove above blank
     if(y != 0){
@@ -167,6 +179,18 @@ function move(direction) {
           document.getElementById("winSound").play();
         }
         alert("Congrats, done");
+        var xhr = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/game/";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) 
+          {
+            //do nothing
+          }
+        };
+        var data = JSON.stringify({"score": timeElapsed/1000, "boardName": image});
+        xhr.send(data);
       }
     }, 1);
 }
@@ -175,13 +199,13 @@ function checkKey(e) {
   switch(e.keyCode) {
     case 37:
       //Check that you can move right
-      if (x < 2) {
+      if (x < 3) {
         moveRight();
       }
       break;
     case 38:
     //Check that you can move down
-      if (y < 2) {
+      if (y < 3) {
         moveDown();
       }
       break;
@@ -204,12 +228,12 @@ function checkKey(e) {
 
 function shuffle() {
   var i;
-  for (i = 0; i < 150; i++) {
+  for (i = 0; i < 1000; i++) {
     var dir = Math.floor((Math.random() * 4));
-    if (dir == 0 && x < 2) {
+    if (dir == 0 && x < 3) {
       moveRight();
     }
-    else if (dir == 1 && y < 2) {
+    else if (dir == 1 && y < 3) {
       moveDown();
     }
     else if (dir == 2 && x > 0) {
@@ -231,7 +255,6 @@ function shuffle() {
 function isCompleted() {
   var i;
   var c;
-  //
   for (i = 0; i < puzzleLength; i++) {
     for (c = 0; c < puzzleLength; c++) {
       if (puzzle[i][c].toString() != completed[i][c].toString()) {
@@ -251,3 +274,4 @@ function moveDown(){move(3);}
 
 </body>
 </html>
+{% endblock %}

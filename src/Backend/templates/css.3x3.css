@@ -1,0 +1,78 @@
+.crop {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 300px;
+    height: 300px;
+}
+
+.crop2 img{
+    width: 225px;
+    height: 225px;
+    float: right;
+}
+
+.pageLayout {
+    width: 100%;
+}
+
+.timerCell {
+    width: 25%;
+}
+
+.gameCell {
+    width: 50%;
+    align: center;
+}
+
+.pictureCell {
+    width: 25%;
+    vertical-align: top;
+}
+
+/* .gameTable {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+} */
+
+#t00 {
+    margin: 0 0 0 0;
+}
+
+#t01 {
+    margin: 0 0 0 -100px;
+}
+
+#t02 {
+    margin: 0 0 0 -200px;
+}
+
+#t10 {
+    margin: -100px 0 0 0;
+}
+
+#t11 {
+    margin: -100px 0 0 -100px;
+}
+
+#t12 {
+    margin: -100px 0 0 -200px;
+}
+
+#t20 {
+    margin: -200px 0 0 0;
+}
+
+#t21 {
+    margin: -200px 0 0 -100px;
+}
+
+#t22 {
+    margin: 0 0 0 0;
+}

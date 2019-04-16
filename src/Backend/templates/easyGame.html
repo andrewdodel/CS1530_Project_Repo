@@ -1,3 +1,5 @@
+{% extends "header.html" %}
+{% block body %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,46 +10,52 @@
 <audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
 
-<p id="timer">0:00</p>
-
-Mute:<input type="checkbox" id="muteCheck">
-
-<table class = "gameTable">
-  <caption> Game </caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
-    </tr>
-</table>
-
-<table style ="float: right;">
-    <caption> Completed Picture</caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
-    </tr>
+<table class = "pageLayout">
+  <tr>
+    <td class = "timerCell" align = center>
+        <p id="timer">0:00</p>
+        <div align = center>Mute:<input type="checkbox" id="muteCheck"></div>
+    </td>
+    <td class = "gameCell">
+        <table class = "gameTable" align = center>
+              <tr class=>
+                  <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+              </tr>
+          </table>
+    </td>
+    <td class = pictureCell>
+        <table>
+            <div class="crop2"><img src="clouds-country-daylight-371633.jpg"></div>
+            <!-- <tr class=>
+                <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+            </tr>
+            <tr>
+                <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+            </tr>
+            <tr>
+                <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+                <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+            </tr> -->
+        </table>
+    </td>
+  </tr>
 </table>
 
 <script>
@@ -167,6 +175,18 @@ function move(direction) {
           document.getElementById("winSound").play();
         }
         alert("Congrats, done");
+        var xhr = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/game/";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) 
+          {
+            //do nothing
+          }
+        };
+        var data = JSON.stringify({"score": timeElapsed/1000, "boardName": image});
+        xhr.send(data);
       }
     }, 1);
 }
@@ -251,3 +271,4 @@ function moveDown(){move(3);}
 
 </body>
 </html>
+{% endblock %}
