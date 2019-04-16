@@ -9,13 +9,37 @@
     height: 500px;
 }
 
-.gameTable {
+.crop2 img{
+    width: 375px;
+    height: 375px;
+    float: right;
+}
+
+.pageLayout {
+    width: 100%;
+}
+
+.timerCell {
+    width: 25%;
+}
+
+.gameCell {
+    width: 50%;
+    align: center;
+}
+
+.pictureCell {
+    width: 25%;
+    vertical-align: top;
+}
+
+/* .gameTable {
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   
-}
+} */
 
 #t00 {
     margin: 0 0 0 0;
