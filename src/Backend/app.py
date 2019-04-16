@@ -140,24 +140,58 @@ def signup():
             return redirect(url_for('mainPage', username = request.form['user']))
 
     return render_template('signup.html', error=error)
+	
+@app.route('/guide/', methods=['GET'])
+def guide():
+	return render_template('guide.html')
 
-@app.route('/game/', methods=['GET', 'POST'])
-def game():
+@app.route('/easyGame/', methods=['GET', 'POST'])
+def easyGame():
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
-            return render_template('game.html')
+            return render_template('easyGame.html')
     else:
-        return render_template('game.html')
+        return render_template('easyGame.html')
+		
+@app.route('/mediumGame/', methods=['GET', 'POST'])
+def mediumGame():
+    if request.method == 'POST':
+        if g.user is not None:
+            gameData = request.json
+            print(gameData['score'])
+            return render_template('mediumGame.html')
+    else:
+        return render_template('mediumGame.html')
+
+@app.route('/hardGame/', methods=['GET', 'POST'])
+def hardGame():
+    if request.method == 'POST':
+        if g.user is not None:
+            gameData = request.json
+            print(gameData['score'])
+            return render_template('hardGame.html')
+    else:
+        return render_template('hardGame.html')
+		
+@app.route('/ultraGame/', methods=['GET', 'POST'])
+def ultraGame():
+    if request.method == 'POST':
+        if g.user is not None:
+            gameData = request.json
+            print(gameData['score'])
+            return render_template('ultraGame.html')
+    else:
+        return render_template('ultraGame.html')
 
 @app.route('/selectGame/', methods=['GET', 'POST'])
 def selectGame():
     if request.method == 'POST':
         boardName = request.form['name']
         boardDifficulty = request.form['diff']
-        if boardName is None:
-            return render_template('selectGame.html', error="Select a game board before beginning!")
+        if boardName is None or Board.query.filter_by(name = boardName).first() is None:
+            return render_template('selectGame.html', error="Select a valid game board before beginning!")
         if boardDifficulty == "easy":
             return redirect(url_for('easyGame', boardName=boardName))
         elif boardDifficulty == "medium":
@@ -169,14 +203,20 @@ def selectGame():
         else:
             return redirect(url_for('mainPage'))
     else:
-        nameList = []
-        start = len(Board.query.all())
-        i = start
-        while (i > start - 5):
-            nameList.append(Board.query.filter_by(boardId = i).first().name)
-            i = i - 1
-        print(nameList)
-        return render_template('selectGame.html', nameList = nameList)
+        return render_template('selectGame.html', nameList = getNameList())
+		
+@app.route('/highscore/', methods=['GET', 'POST'])
+def highscore():
+    if request.method == 'POST':
+        boardName = request.form['name']
+        boardDifficulty = request.form['diff']
+        if boardName is None or Board.query.filter_by(name = boardName).first() is None:
+            return render_template('highscore.html', error="Select a valid game board to view highscores!", nameList = getNameList())
+        else:
+			thisBoard = Board.query.filter_by(name = boardName).first()
+            return render_template('highscore.html', nameList = getNameList(), easyList = thisBoard.smallScores.split(" "), mediumList = thisBoard.medScores.split(" "), hardList = thisBoard.largeScores.split(" "), ultraList = thisBoard.ultraScores.split(" "))
+    else:
+        return render_template('highscore.html', nameList = getNameList())
 
 @app.route('/logout/')
 def logout():
@@ -248,6 +288,14 @@ def updateHS(bigString, user, score):
 
     return retString[1:]
 
+def getNameList():
+	nameList = []
+    start = len(Board.query.all())
+    i = start
+    while (i > start - 5):
+        nameList.append(Board.query.filter_by(boardId = i).first().name)
+        i = i - 1
+    return nameList
 
 
 if __name__ == '__main__':
