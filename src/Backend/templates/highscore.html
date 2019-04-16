@@ -1,57 +1,107 @@
 {% extends "header.html" %}
-{% block body %}
-	Look at these recently selected games...
-	<br/>
-	{% if nameList %}
-		<br/>
-		<ul id="gameList">
+{% block body%}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gallery</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="gallery-grid.css">
+</head>
+<body>
+
+<div class="container gallery-container">
+
+    <h1>Check these recently selected games...</h1>
+    	<div>
+		<form action="" method ="post">
+			<input type = "text" placeholder = "picture name" name="name">
+			
+			<button type= "submit"><strong>CHECK</strong></button>
+		</form>
+	</div>
+	<br>
+	<div>
+		<table style="width:100%">
+			<tr>
+				<th>Easy</th>
+				<th>Medium</th>
+				<th>Hard</th>
+				<th>ultra</th>
+			</tr>
+			<tr>
+				<td>
+					{% if easyList %}
+						<ol id= "ezList">
+						{%for each in easyList%}
+							<li>{{each}}</li>
+						{% endfor%}
+						</ol>
+					{% endif %}
+				</td>
+				
+				<td>
+					{% if mediumList %}
+						<ol id= "mdList">
+						{%for each in mediumList%}
+							<li>{{each}}</li>
+						{% endfor%}
+						</ol>
+					{% endif %}
+				</td>
+				<td>
+					{% if hardList %}
+						<ol id= "hdList">
+						{%for each in hardList%}
+							<li>{{each}}</li>
+						{% endfor%}
+						</ol>
+					{% endif %}
+				</td>
+				<td>
+					{% if ultraList %}
+						<ol id= "uaList">
+						{%for each in ultraList%}
+							<li>{{each}}</li>
+						{% endfor%}
+						</ol>
+					{% endif %}
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	
+    <div class="tz-gallery">
+		<% if nameList%>
+		<ul id ="gameList">
 		{% for each in nameList %}
-			<li><h3>{{ each }}</h3><img src="/static/{{ each }}" id="{{ each }}" width="20%" height="auto"></li>
+        <div class="row">
+			<div class="col-sm-6 col-md-4">
+                <a class="lightbox">
+                    <img src="/static/{{each}}" id="{{each}}">
+				<p>Name: {{each}}</p>
+            </div>
+        </div>
 		{% endfor %}
 		</ul>
-		<br/>
-	{% endif %}
-	Know what board you want to view the highscores for? Enter here to see.
-	<form action="" method="post">
-		Board Name: <input type ="text" name="name"/>
-		<br/>
-		<input type="submit" value="Search"/>
-	</form>
-	</br> 
-	{% if easyList %}
-		<br/>
-		<ol id="ezList">
-		{% for each in easyList %}
-			<li><h3>{{ each }}</li>
-		{% endfor %}
-		</ol>
-		<br/>
-	{% endif %}
-	{% if mediumList %}
-		<br/>
-		<ol id="mdList">
-		{% for each in mediumList %}
-			<li><h3>{{ each }}</li>
-		{% endfor %}
-		</ol>
-		<br/>
-	{% endif %}
-	{% if hardList %}
-		<br/>
-		<ol id="hdList">
-		{% for each in hardList %}
-			<li><h3>{{ each }}</li>
-		{% endfor %}
-		</ol>
-		<br/>
-	{% endif %}
-	{% if ultraList %}
-		<br/>
-		<ol id="uaList">
-		{% for each in ultraList %}
-			<li><h3>{{ each }}</li>
-		{% endfor %}
-		</ol>
-		<br/>
-	{% endif %}
+		<% endif%>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
+</body>
+</html>
 {% endblock %}
