@@ -31,115 +31,115 @@ app.debug = True
 db = SQLAlchemy(app)
 db.init_app(app)
 boardList = db.Table('boardList',
-                            db.Column('boardId', db.Integer, db.ForeignKey('board.boardId')),
-                            db.Column('userId', db.Integer, db.ForeignKey('user.userId'))
-                     )
+							db.Column('boardId', db.Integer, db.ForeignKey('board.boardId')),
+							db.Column('userId', db.Integer, db.ForeignKey('user.userId'))
+					 )
 
 
 class User(db.Model):
-    userId = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(16), nullable=False)
-    password = db.Column(db.String(16), nullable=False)
-    boards = db.relationship('Board', backref='user', lazy='dynamic')
+	userId = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(16), nullable=False)
+	password = db.Column(db.String(16), nullable=False)
+	boards = db.relationship('Board', backref='user', lazy='dynamic')
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+	def __init__(self, username, password):
+		self.username = username
+		self.password = password
 
-    def __iter__(self):
-        return iter(self.userId)
+	def __iter__(self):
+		return iter(self.userId)
 
 class Board(db.Model):
-    boardId = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.userId'), nullable=False)
-    name = db.Column(db.String(32), nullable=False)
-    smallScores = db.Column(db.String(170), nullable=True)
-    medScores = db.Column(db.String(170), nullable=True)
-    largeScores = db.Column(db.String(170), nullable=True)
-    ultraScores = db.Column(db.String(170), nullable=True)
+	boardId = db.Column(db.Integer, primary_key=True)
+	userId = db.Column(db.Integer, db.ForeignKey('user.userId'), nullable=False)
+	name = db.Column(db.String(32), nullable=False)
+	smallScores = db.Column(db.String(170), nullable=True)
+	medScores = db.Column(db.String(170), nullable=True)
+	largeScores = db.Column(db.String(170), nullable=True)
+	ultraScores = db.Column(db.String(170), nullable=True)
 
-    def __init__(self, userId, name):
-        self.userId = userId
-        self.name = name
-        self.smallScores = ""
-        self.medScores = ""
-        self.largeScores = ""
-        self.ultraScores = ""
+	def __init__(self, userId, name):
+		self.userId = userId
+		self.name = name
+		self.smallScores = ""
+		self.medScores = ""
+		self.largeScores = ""
+		self.ultraScores = ""
 
 # init db
 @app.cli.command('initdb')
 def initdb():
-    db.drop_all()
-    db.create_all()
-    db.session.commit()
+	db.drop_all()
+	db.create_all()
+	db.session.commit()
 
 def getUserId(username):
-    user = User.query.filter_by(username=username).first()
-    return user.userId if user else None
+	user = User.query.filter_by(username=username).first()
+	return user.userId if user else None
 
 @app.before_request
 def before_request():
-    g.user = None
-    if 'userId' in session:
-        g.user = User.query.filter_by(userId=session['userId']).first()
+	g.user = None
+	if 'userId' in session:
+		g.user = User.query.filter_by(userId=session['userId']).first()
 
 #dafault page is homepage
 @app.route('/')
 def default():
-    if g.user is not None:
-        return render_template('mainPage.html', username=g.user.username)
-    else:
-        return render_template('mainPage.html')
+	if g.user is not None:
+		return render_template('mainPage.html', username=g.user.username)
+	else:
+		return render_template('mainPage.html')
 
 @app.route('/mainPage/')
 def mainPage():
-    if g.user is not None:
-        return render_template('mainPage.html', username=g.user.username)
-    else:
-        return render_template('mainPage.html')
+	if g.user is not None:
+		return render_template('mainPage.html', username=g.user.username)
+	else:
+		return render_template('mainPage.html')
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
-    if g.user:
-        return redirect(url_for('mainPage', username=g.user.username))
+	if g.user:
+		return redirect(url_for('mainPage', username=g.user.username))
 
-    error = None
+	error = None
 
-    if request.method == 'POST':
-        user = User.query.filter_by(username=request.form['user']).first()
+	if request.method == 'POST':
+		user = User.query.filter_by(username=request.form['user']).first()
 
-        if user is None:
-            error = 'Invalid username!'
+		if user is None:
+			error = 'Invalid username!'
 
-        elif user.password == request.form['pass']:
-            session['userId'] = user.userId
-            return redirect(url_for('mainPage', username=user.username))
-        else:
-            error = 'Error! Double-check your password'
+		elif user.password == request.form['pass']:
+			session['userId'] = user.userId
+			return redirect(url_for('mainPage', username=user.username))
+		else:
+			error = 'Error! Double-check your password'
 
-    return render_template('login.html', error=error)
+	return render_template('login.html', error=error)
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
-    if g.user:
-        return redirect(url_for('mainPage', username=g.user.username))
+	if g.user:
+		return redirect(url_for('mainPage', username=g.user.username))
 
-    error = None
+	error = None
 
-    if request.method == 'POST':
-        #check user
-        if not request.form['user'] or getUserId(request.form['user']) is not None:
-            error = 'Choose a new username!'
-        #check pass
-        elif not request.form['pass']:
-            error = 'You need a password to create an account!'
-         #add valid user/pass combo to database
-        else:
-            db.session.add(User(request.form['user'], request.form['pass']))
-            db.session.commit()
-            return redirect(url_for('mainPage', username = request.form['user']))
+	if request.method == 'POST':
+		#check user
+		if not request.form['user'] or getUserId(request.form['user']) is not None:
+			error = 'Choose a new username!'
+		#check pass
+		elif not request.form['pass']:
+			error = 'You need a password to create an account!'
+		 #add valid user/pass combo to database
+		else:
+			db.session.add(User(request.form['user'], request.form['pass']))
+			db.session.commit()
+			return redirect(url_for('mainPage', username = request.form['user']))
 
-    return render_template('signup.html', error=error)
+	return render_template('signup.html', error=error)
 	
 @app.route('/guide/', methods=['GET'])
 def guide():
@@ -147,156 +147,156 @@ def guide():
 
 @app.route('/easyGame/', methods=['GET', 'POST'])
 def easyGame():
-    if request.method == 'POST':
-        if g.user is not None:
-            gameData = request.json
-            print(gameData['score'])
-            return render_template('easyGame.html')
-    else:
-        return render_template('easyGame.html')
+	if request.method == 'POST':
+		if g.user is not None:
+			gameData = request.json
+			print(gameData['score'])
+			return render_template('easyGame.html')
+	else:
+		return render_template('easyGame.html')
 		
 @app.route('/mediumGame/', methods=['GET', 'POST'])
 def mediumGame():
-    if request.method == 'POST':
-        if g.user is not None:
-            gameData = request.json
-            print(gameData['score'])
-            return render_template('mediumGame.html')
-    else:
-        return render_template('mediumGame.html')
+	if request.method == 'POST':
+		if g.user is not None:
+			gameData = request.json
+			print(gameData['score'])
+			return render_template('mediumGame.html')
+	else:
+		return render_template('mediumGame.html')
 
 @app.route('/hardGame/', methods=['GET', 'POST'])
 def hardGame():
-    if request.method == 'POST':
-        if g.user is not None:
-            gameData = request.json
-            print(gameData['score'])
-            return render_template('hardGame.html')
-    else:
-        return render_template('hardGame.html')
+	if request.method == 'POST':
+		if g.user is not None:
+			gameData = request.json
+			print(gameData['score'])
+			return render_template('hardGame.html')
+	else:
+		return render_template('hardGame.html')
 		
 @app.route('/ultraGame/', methods=['GET', 'POST'])
 def ultraGame():
-    if request.method == 'POST':
-        if g.user is not None:
-            gameData = request.json
-            print(gameData['score'])
-            return render_template('ultraGame.html')
-    else:
-        return render_template('ultraGame.html')
+	if request.method == 'POST':
+		if g.user is not None:
+			gameData = request.json
+			print(gameData['score'])
+			return render_template('ultraGame.html')
+	else:
+		return render_template('ultraGame.html')
 
 @app.route('/selectGame/', methods=['GET', 'POST'])
 def selectGame():
-    if request.method == 'POST':
-        boardName = request.form['name']
-        boardDifficulty = request.form['diff']
-        if boardName is None or Board.query.filter_by(name = boardName).first() is None:
-            return render_template('selectGame.html', error="Select a valid game board before beginning!")
-        if boardDifficulty == "easy":
-            return redirect(url_for('easyGame', boardName=boardName))
-        elif boardDifficulty == "medium":
-            return redirect(url_for('mediumGame', boardName=boardName))
-        elif boardDifficulty == "hard":
-            return redirect(url_for('hardGame', boardName=boardName))
-        elif boardDifficulty == "ultra":
-            return redirect(url_for('ultraGame', boardName=boardName))
-        else:
-            return redirect(url_for('mainPage'))
-    else:
-        return render_template('selectGame.html', nameList = getNameList())
+	if request.method == 'POST':
+		boardName = request.form['name']
+		boardDifficulty = request.form['diff']
+		if boardName is None or Board.query.filter_by(name = boardName).first() is None:
+			return render_template('selectGame.html', error="Select a valid game board before beginning!")
+		if boardDifficulty == "easy":
+			return redirect(url_for('easyGame', boardName=boardName))
+		elif boardDifficulty == "medium":
+			return redirect(url_for('mediumGame', boardName=boardName))
+		elif boardDifficulty == "hard":
+			return redirect(url_for('hardGame', boardName=boardName))
+		elif boardDifficulty == "ultra":
+			return redirect(url_for('ultraGame', boardName=boardName))
+		else:
+			return redirect(url_for('mainPage'))
+	else:
+		return render_template('selectGame.html', nameList = getNameList())
 		
 @app.route('/highscore/', methods=['GET', 'POST'])
 def highscore():
-    if request.method == 'POST':
-        boardName = request.form['name']
-        boardDifficulty = request.form['diff']
-        if boardName is None or Board.query.filter_by(name = boardName).first() is None:
-            return render_template('highscore.html', error="Select a valid game board to view highscores!", nameList = getNameList())
-        else:
+	if request.method == 'POST':
+		boardName = request.form['name']
+		boardDifficulty = request.form['diff']
+		if boardName is None or Board.query.filter_by(name = boardName).first() is None:
+			return render_template('highscore.html', error="Select a valid game board to view highscores!", nameList = getNameList())
+		else:
 			thisBoard = Board.query.filter_by(name = boardName).first()
-            return render_template('highscore.html', nameList = getNameList(), easyList = thisBoard.smallScores.split(" "), mediumList = thisBoard.medScores.split(" "), hardList = thisBoard.largeScores.split(" "), ultraList = thisBoard.ultraScores.split(" "))
-    else:
-        return render_template('highscore.html', nameList = getNameList())
+			return render_template('highscore.html', nameList = getNameList(), easyList = thisBoard.smallScores.split(" "), mediumList = thisBoard.medScores.split(" "), hardList = thisBoard.largeScores.split(" "), ultraList = thisBoard.ultraScores.split(" "))
+	else:
+		return render_template('highscore.html', nameList = getNameList())
 
 @app.route('/logout/')
 def logout():
-    if g.user:
-        session.pop('userId', None)
-    return render_template('logout.html')
+	if g.user:
+		session.pop('userId', None)
+	return render_template('logout.html')
 
 @app.route('/upload/', methods=['GET', 'POST'])
 def upload():
-    if request.method == 'POST':
-        if g.user is not None:
-            if 'file' not in request.files:
-                error = 'No file part'
-                print(error)
-                return render_template('upload.html', error = error)
-            file = request.files['file']
-            # if user does not select file, browser also
-            # submit a empty part without filename
-            if file.filename == '':
-                error = 'No selected file'
-                print(error)
-                return render_template('upload.html', error=error)
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                print(filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                print("file saved")
-                newBoard = Board(g.user.userId, filename)
-                db.session.add(newBoard)
-                db.session.commit()
-                print(filename)
-                return render_template('success.html')
-            else:
-                print('its still broke')
-        else:
-            return render_template('mainPage.html')
+	if request.method == 'POST':
+		if g.user is not None:
+			if 'file' not in request.files:
+				error = 'No file part'
+				print(error)
+				return render_template('upload.html', error = error)
+			file = request.files['file']
+			# if user does not select file, browser also
+			# submit a empty part without filename
+			if file.filename == '':
+				error = 'No selected file'
+				print(error)
+				return render_template('upload.html', error=error)
+			if file and allowed_file(file.filename):
+				filename = secure_filename(file.filename)
+				print(filename)
+				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+				print("file saved")
+				newBoard = Board(g.user.userId, filename)
+				db.session.add(newBoard)
+				db.session.commit()
+				print(filename)
+				return render_template('success.html')
+			else:
+				print('its still broke')
+		else:
+			return render_template('mainPage.html')
 
-    else:
-        return render_template('upload.html')
+	else:
+		return render_template('upload.html')
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+	return '.' in filename and \
+		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+	return send_from_directory(app.config['UPLOAD_FOLDER'],
+							   filename)
 
 def updateHS(bigString, user, score):
-    usList = bigString.split(" ")
-    print(usList)
-    retString = ""
-    scoreList = [(each[0:each.find('-')], each[each.find('-')+1:]) for each in usList]
+	usList = bigString.split(" ")
+	print(usList)
+	retString = ""
+	scoreList = [(each[0:each.find('-')], each[each.find('-')+1:]) for each in usList]
 
-    for i in range(10):
-        if i >= len(scoreList):
-            scoreList.insert(i, (score, user))
-            break
-        elif score < int(scoreList[i][0]):
-            scoreList.insert(i, (score, user))
-            break
+	for i in range(10):
+		if i >= len(scoreList):
+			scoreList.insert(i, (score, user))
+			break
+		elif score < int(scoreList[i][0]):
+			scoreList.insert(i, (score, user))
+			break
 
-    for i in range(10):
-        if i >= len(scoreList):
-            break
-        else:
-            retString = retString + " " + str(scoreList[i][0]) + "-" + str(scoreList[i][1])
+	for i in range(10):
+		if i >= len(scoreList):
+			break
+		else:
+			retString = retString + " " + str(scoreList[i][0]) + "-" + str(scoreList[i][1])
 
-    return retString[1:]
+	return retString[1:]
 
 def getNameList():
 	nameList = []
-    start = len(Board.query.all())
-    i = start
-    while (i > start - 5):
-        nameList.append(Board.query.filter_by(boardId = i).first().name)
-        i = i - 1
-    return nameList
+	start = len(Board.query.all())
+	i = start
+	while (i > start - 5):
+		nameList.append(Board.query.filter_by(boardId = i).first().name)
+		i = i - 1
+	return nameList
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0')
