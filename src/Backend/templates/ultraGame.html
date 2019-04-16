@@ -10,145 +10,87 @@
 <audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
 
-<p id="timer">0:00</p>
-
-Mute:<input type="checkbox" id="muteCheck">
-
-<table class = "gameTable" style ="float: left">
-  <caption> Game </caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t04" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t05" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t06" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
+<table class = "pageLayout">
     <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t14" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t15" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t16" src="clouds-country-daylight-371633.jpg"></div></td>
+      <td class = "timerCell" align = center>
+          <p id="timer">0:00</p>
+          <div align = center>Mute:<input type="checkbox" id="muteCheck"></div>
+      </td>
+      <td class = "gameCell">
+          <table class = "gameTable" align = center>
+              <tr class=>
+                  <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t04" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t05" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t06" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t14" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t15" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t16" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t24" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t25" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t26" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t33" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t34" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t35" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t36" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t40" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t41" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t42" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t43" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t44" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t45" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t46" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t50" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t51" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t52" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t53" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t54" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t55" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t56" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t60" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t61" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t62" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t63" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t64" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t65" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t66" src="Blank.png"></div></td>
+              </tr>
+            </table>
+      </td>
+      <td class = pictureCell>
+          <table>
+              <div class="crop2"><img src="clouds-country-daylight-371633.jpg"></div>
+          </table>
+      </td>
     </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t24" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t25" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t26" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t33" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t34" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t35" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t36" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t40" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t41" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t42" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t43" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t44" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t45" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t46" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t50" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t51" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t52" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t53" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t54" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t55" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t56" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t60" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t61" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t62" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t63" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t64" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t65" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t66" src="Blank.png"></div></td>
-    </tr>
-</table>
-
-<table style ="float: right;">
-    <caption> Completed Picture</caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t04" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t05" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t06" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t14" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t15" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t16" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t24" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t25" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t26" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t33" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t34" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t35" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t36" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t40" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t41" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t42" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t43" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t44" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t45" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t46" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t50" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t51" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t52" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t53" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t54" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t55" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t56" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t60" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t61" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t62" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t63" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t64" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t65" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t66" src="Blank.png"></div></td>
-    </tr>
-</table>
-</table>
-
+  </table>
+  
 <script>
 // x,y is location of blank
 document.onkeydown = checkKey;
