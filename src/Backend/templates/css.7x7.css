@@ -1,0 +1,214 @@
+.crop {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 350px;
+    height: 350px;
+}
+
+.gameTable {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+}
+
+#t00 {
+    margin: 0 0 0 0;
+}
+
+#t01 {
+    margin: 0 0 0 -50px;
+}
+
+#t02 {
+    margin: 0 0 0 -100px;
+}
+
+#t03 {
+    margin: 0 0 0 -150px;
+}
+
+#t04 {
+    margin: 0 0 0 -200px;
+}
+
+#t05 {
+    margin: 0 0 0 -250px;
+}
+
+#t06 {
+    margin: 0 0 0 -300px;
+}
+
+#t10 {
+    margin: -50px 0 0 0;
+}
+
+#t11 {
+    margin: -50px 0 0 -50px;
+}
+
+#t12 {
+    margin: -50px 0 0 -100px;
+}
+
+#t13 {
+    margin: -50px 0 0 -150px;
+}
+
+#t14 {
+    margin: -50px 0 0 -200px;
+}
+
+#t15 {
+    margin: -50px 0 0 -250px;
+}
+
+#t16 {
+    margin: -50px 0 0 -300px;
+}
+
+#t20 {
+    margin: -100px 0 0 0;
+}
+
+#t21 {
+    margin: -100px 0 0 -50px;
+}
+
+#t22 {
+    margin: -100px 0 0 -100px;
+}
+
+#t23 {
+    margin: -100px 0 0 -150px;
+}
+
+#t24 {
+    margin: -100px 0 0 -200px;
+}
+
+#t25 {
+    margin: -100px 0 0 -250px;
+}
+
+#t26 {
+    margin: -100px 0 0 -300px;
+}
+
+#t30 {
+    margin: -150px 0 0 0;
+}
+
+#t31 {
+    margin: -150px 0 0 -50px;
+}
+
+#t32 {
+    margin: -150px 0 0 -100px;
+}
+
+#t33 {
+    margin: -150px 0 0 -150px;
+}
+
+#t34 {
+    margin: -150px 0 0 -200px;
+}
+
+#t35 {
+    margin: -150px 0 0 -250px;
+}
+
+#t36 {
+    margin: -150px 0 0 -300px;
+}
+
+#t40 {
+    margin: -200px 0 0 0;
+}
+
+#t41 {
+    margin: -200px 0 0 -50px;
+}
+
+#t42 {
+    margin: -200px 0 0 -100px;
+}
+
+#t43 {
+    margin: -200px 0 0 -150px;
+}
+
+#t44 {
+    margin: -200px 0 0 -200px;
+}
+
+#t45 {
+    margin: -200px 0 0 -250px;
+}
+
+#t46 {
+    margin: -200px 0 0 -300px;
+}
+
+#t50 {
+    margin: -250px 0 0 0;
+}
+
+#t51 {
+    margin: -250px 0 0 -50px;
+}
+
+#t52 {
+    margin: -250px 0 0 -100px;
+}
+
+#t53 {
+    margin: -250px 0 0 -150px;
+}
+
+#t54 {
+    margin: -250px 0 0 -200px;
+}
+
+#t55 {
+    margin: -250px 0 0 -250px;
+}
+
+#t56 {
+    margin: -250px 0 0 -300px;
+}
+
+#t60 {
+    margin: -300px 0 0 0;
+}
+
+#t61 {
+    margin: -300px 0 0 -50px;
+}
+
+#t62 {
+    margin: -300px 0 0 -100px;
+}
+
+#t63 {
+    margin: -300px 0 0 -150px;
+}
+
+#t64 {
+    margin: -300px 0 0 -200px;
+}
+
+#t65 {
+    margin: -300px 0 0 -250px;
+}
+
+#t66 {
+    margin: 0 0 0 0;
+}
