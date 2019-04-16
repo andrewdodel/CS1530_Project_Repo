@@ -10,65 +10,46 @@
 <audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
 
-<p id="timer">0:00</p>
-
-Mute:<input type="checkbox" id="muteCheck">
-
-<table class = "gameTable" style ="float: left">
-  <caption> Game </caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
+<table class = "pageLayout">
     <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+      <td class = "timerCell" align = center>
+          <p id="timer">0:00</p>
+          <div align = center>Mute:<input type="checkbox" id="muteCheck"></div>
+      </td>
+      <td class = "gameCell">
+          <table class = "gameTable" align = center>
+              <tr class=>
+                  <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
+              </tr>
+              <tr>
+                  <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t33" src="Blank.png"></div></td>
+              </tr>
+            </table>
+      </td>
+      <td class = pictureCell>
+          <table>
+              <div class="crop2"><img src="clouds-country-daylight-371633.jpg"></div>
+          </table>
+      </td>
     </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t33" src="Blank.png"></div></td>
-    </tr>
-</table>
-
-<table style ="float: right;">
-    <caption> Completed Picture</caption>
-    <tr class=>
-        <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t03" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t13" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t22" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t23" src="clouds-country-daylight-371633.jpg"></div></td>
-    </tr>
-    <tr>
-        <td><div class="crop"><img id="t30" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t31" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t32" src="clouds-country-daylight-371633.jpg"></div></td>
-        <td><div class="crop"><img id="t33" src="Blank.png"></div></td>
-    </tr>
-</table>
 </table>
 
 <script>
