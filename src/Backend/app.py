@@ -174,6 +174,8 @@ def easyGame(boardName):
             gameData = request.json
             print(gameData['score'])
             return render_template('easyGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('easyGame.html', boardName = boardName)
 
@@ -185,6 +187,8 @@ def mediumGame(boardName):
             gameData = request.json
             print(gameData['score'])
             return render_template('mediumGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('mediumGame.html', boardName = boardName)
 
@@ -196,6 +200,8 @@ def hardGame(boardName):
             gameData = request.json
             print(gameData['score'])
             return render_template('hardGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('hardGame.html', boardName = boardName)
 
@@ -207,6 +213,8 @@ def ultraGame(boardName):
             gameData = request.json
             print(gameData['score'])
             return render_template('ultraGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('ultraGame.html', boardName = boardName)
 
@@ -348,4 +356,4 @@ def getCurrentTime():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run()
