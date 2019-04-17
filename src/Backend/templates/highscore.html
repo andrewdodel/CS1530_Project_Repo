@@ -19,14 +19,13 @@
 
 <div class="container gallery-container">
 
-    <h1>Check these recently selected games...</h1>
+    <h1>Enter the name of a board to check its highscores</h1>
     	<div>
-		<form action="" method ="post">
-			<input type = "text" placeholder = "picture name" name="name">
-			
-			<button type= "submit"><strong>CHECK</strong></button>
+		<form action="" method="post">
+			<input type ="text" name="name"/>
+			<input type="submit" value="Check"/>
 		</form>
-	</div>
+		</div>
 	<br>
 	<div>
 		<table style="width:100%">
@@ -79,20 +78,21 @@
 		
 	</div>
 	
+	<h1>Or check out these recently uploaded games.</h1>
+	
     <div class="tz-gallery">
-		<% if nameList%>
+		{% if nameList %}
 		<ul id ="gameList">
 		{% for each in nameList %}
         <div class="row">
 			<div class="col-sm-6 col-md-4">
-                <a class="lightbox">
-                    <img src="/static/{{each}}" id="{{each}}">
-				<p>Name: {{each}}</p>
+                 <img src="/static/{{each.fileName}}" id="{{each}}">
+				<p>Name: {{each.name}}</p>
             </div>
         </div>
 		{% endfor %}
 		</ul>
-		<% endif%>
+		{% endif %}
 
     </div>
 

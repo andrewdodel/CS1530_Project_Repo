@@ -31,19 +31,18 @@
 		</form>
 	</div>
     <div class="tz-gallery">
-		<% if nameList%>
+		{% if nameList %}
 		<ul id ="gameList">
 		{% for each in nameList %}
         <div class="row">
 			<div class="col-sm-6 col-md-4">
-                <a class="lightbox">
-                    <img src="/static/{{each}}" id="{{each}}">
-				<p>Name: {{each}}</p>
+                <img src="/static/{{each.fileName}}" id="{{each}}">
+				<p>Name: {{each.name}}</p>
             </div>
         </div>
 		{% endfor %}
 		</ul>
-		<% endif%>
+		{% endif %}
     </div>
 
 </div>

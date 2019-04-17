@@ -28,7 +28,7 @@ app.config.from_object(__name__)
 app.config['TESTING'] = False
 app.config['DEBUG'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.debug = True
+app.debug = False
 db = SQLAlchemy(app)
 db.init_app(app)
 boardList = db.Table('boardList',
@@ -64,7 +64,7 @@ class Board(db.Model):
     def __init__(self, userId, filename, name):
         self.userId = userId
         self.name = name
-        self.filename = filename
+        self.fileName = filename
         self.smallScores = ""
         self.medScores = ""
         self.largeScores = ""
@@ -228,7 +228,7 @@ def selectGame():
 def highscore():
     if request.method == 'POST':
         boardName = request.form['name']
-        boardDifficulty = request.form['diff']
+        print(boardName)
         if boardName is None or Board.query.filter_by(name=boardName).first() is None:
             return render_template('highscore.html', error="Select a valid game board to view highscores!",
                                    nameList=getNameList())
@@ -273,6 +273,7 @@ def upload():
                 print("file saved")
                 print(request.form['name'])
                 newBoard = Board(g.user.userId, filename, name)
+                print(newBoard)
                 db.session.add(newBoard)
                 db.session.commit()
                 print(filename)
