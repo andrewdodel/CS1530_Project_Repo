@@ -3,6 +3,8 @@ import datetime
 from flask import Flask, request, session, url_for, redirect, render_template, abort, g, send_from_directory, request
 from flask_sqlalchemy import SQLAlchemy
 from random import randint
+import hashlib
+import time
 
 from werkzeug.utils import secure_filename
 
@@ -40,12 +42,14 @@ boardList = db.Table('boardList',
 class User(db.Model):
     userId = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), nullable=False)
-    password = db.Column(db.String(16), nullable=False)
+    password = db.Column(db.String(32), nullable=False)
+    lastUploadTime = db.Column(db.Integer, nullable=True)
+    lastSignInTime = db.Column(db.Integer, nullable=True)
     boards = db.relationship('Board', backref='user', lazy='dynamic')
 
     def __init__(self, username, password):
         self.username = username
-        self.password = password
+        self.password = hashlib.md5(password.encode()).hexdigest()
 
     def __iter__(self):
         return iter(self.userId)
@@ -118,15 +122,21 @@ def login():
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['user']).first()
 
+        print(user.lastSignInTime)
+        print(getCurrentTime())
         if user is None:
             error = 'Invalid username!'
-
-        elif user.password == request.form['pass']:
+        elif user.lastSignInTime is not None and user.lastSignInTime > getCurrentTime() - 7:
+            error = 'Incorrect password was recently entered! Wait a few seconds before trying again!'
+        elif user.password == hashlib.md5(request.form['pass'].encode()).hexdigest():
             session['userId'] = user.userId
+            user.lastSignInTime = getCurrentTime()
+            db.session.commit()
             return redirect(url_for('mainPage', username=user.username))
         else:
             error = 'Error! Double-check your password'
-
+    user.lastSignInTime = getCurrentTime()
+    db.session.commit()
     return render_template('login.html', error=error)
 
 
@@ -266,6 +276,9 @@ def upload():
             if not name or Board.query.filter_by(name=name).first() is not None:
                 error = 'You need to give the picture a name!!'
                 return render_template('upload.html', error=error)
+            if g.user.lastSignInTime is not None and g.user.lastSignInTime > getCurrentTime() - 5:
+                error = 'You just uploaded a file! Wait a few seconds before adding another!'
+                return render_template('upload.html', error=error)
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 print(filename)
@@ -275,6 +288,7 @@ def upload():
                 newBoard = Board(g.user.userId, filename, name)
                 print(newBoard)
                 db.session.add(newBoard)
+                g.user.lastUploadTime = getCurrentTime()
                 db.session.commit()
                 print(filename)
                 return render_template('success.html')
@@ -329,6 +343,9 @@ def getNameList():
         nameList.append(Board.query.filter_by(boardId=i).first())
         i = i - 1
     return nameList
+
+def getCurrentTime():
+    return int(round(time.time()))
 
 
 if __name__ == '__main__':
