@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css.3x3.css">
+    <link rel="stylesheet" type="text/css" href="/static/special/css.3x3.css">
 </head>
 <body>
 
-<audio id="winSound" src="crowdapplause.mp3" preload="auto"></audio>
-<audio id="moveSound" src="open_door_2.mp3" preload="auto"></audio>
+<audio id="winSound" src="/static/special/crowdapplause.mp3" preload="auto"></audio>
+<audio id="moveSound" src="/static/special/open_door_2.mp3" preload="auto"></audio>
 
 <table class = "pageLayout">
   <tr>
@@ -19,25 +19,25 @@
     <td class = "gameCell">
         <table class = "gameTable" align = center>
               <tr class=>
-                  <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t02" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t00" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t01" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t02" src="/static/{{ boardName }}"></div></td>
               </tr>
               <tr>
-                  <td><div class="crop"><img id="t10" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t11" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t12" src="clouds-country-daylight-371633.jpg"></div></td>
+                  <td><div class="crop"><img id="t10" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t11" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t12" src="/static/{{ boardName }}"></div></td>
               </tr>
               <tr>
-                  <td><div class="crop"><img id="t20" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t21" src="clouds-country-daylight-371633.jpg"></div></td>
-                  <td><div class="crop"><img id="t22" src="Blank.png"></div></td>
+                  <td><div class="crop"><img id="t20" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t21" src="/static/{{ boardName }}"></div></td>
+                  <td><div class="crop"><img id="t22" src="/static/special/image/Blank.png"></div></td>
               </tr>
           </table>
     </td>
     <td class = pictureCell>
         <table>
-            <div class="crop2"><img src="clouds-country-daylight-371633.jpg"></div>
+            <div class="crop2"><img src="/static/{{ boardName }}"></div>
             <!-- <tr class=>
                 <td><div class="crop"><img id="t00" src="clouds-country-daylight-371633.jpg"></div></td>
                 <td><div class="crop"><img id="t01" src="clouds-country-daylight-371633.jpg"></div></td>
@@ -66,7 +66,7 @@ var y = 2; // 0 is the top
 var puzzleLength = 3;
 var puzzle = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
 var completed = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
-var image = "clouds-country-daylight-371633.jpg";
+var image = "/static/{{ boardName }}";
 start = false;
 document.getElementById("t21").addEventListener("click", moveLeft);
 document.getElementById("t12").addEventListener("click", moveUp);
@@ -159,7 +159,7 @@ function move(direction) {
         document.getElementById(("t" + (y-1)) + x).style.margin = (puzzle[y][x][0]*(-100) + "px 0 0 ") + puzzle[y][x][1]*(-100) + "px";
         puzzle[y-1][x] = puzzle[y][x];
     }
-    document.getElementById(("t" + y) + x).src = "Blank.png";
+    document.getElementById(("t" + y) + x).src = "/static/special/image/Blank.png";
     document.getElementById(("t" + y) + x).style.margin = "0 0 0 0";
     puzzle[y][x] = [puzzleLength-1, puzzleLength-1];
     // ASSUMPTION: BLANK PIECE ALWAYS STARTS IN BOTTOM RIGHT!!!
