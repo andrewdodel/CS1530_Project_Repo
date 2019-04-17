@@ -176,7 +176,7 @@ function move(direction) {
         }
         alert("Congrats, done");
         var xhr = new XMLHttpRequest();
-        var url = "http://127.0.0.1:5000/game/";
+        var url = "http://127.0.0.1:5000/easyGame/{{ boardName }}";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {

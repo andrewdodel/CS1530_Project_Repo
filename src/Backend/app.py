@@ -169,13 +169,34 @@ def guide():
 
 @app.route('/easyGame/<boardName>', methods=['GET', 'POST'])
 def easyGame(boardName):
+    print(boardName)
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
+            thisBoard = Board.query.filter_by(fileName=boardName).first()
+            thisBoard.smallScores = updateHS(thisBoard.smallScores, g.user.username, int(gameData['score']))
+            db.session.commit()
             return render_template('easyGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('easyGame.html', boardName = boardName)
+
+@app.route('/easyGameWin/', methods=['GET', 'POST'])
+def easyGameWin():
+    if request.method == 'POST':
+        if g.user is not None:
+            gameData = request.json
+            print(gameData['score'])
+            score = gameData['score']
+            boardName = gameData['boardName']
+            thisBoard = Board.query.filter_by(fileName=boardName).first()
+            thisBoard.smallScores = updateHS(thisBoard.smallScores, g.user.username, int(gameData['score']))
+            db.session.commit()
+            return render_template('easyGame.html', boardName = boardName)
+    else:
+        return render_template('mainPage.html')
 
 
 @app.route('/mediumGame/<boardName>', methods=['GET', 'POST'])
@@ -184,7 +205,12 @@ def mediumGame(boardName):
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
+            thisBoard = Board.query.filter_by(fileName=boardName).first()
+            thisBoard.medScores = updateHS(thisBoard.medScores, g.user.username, int(gameData['score']))
+            db.session.commit()
             return render_template('mediumGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('mediumGame.html', boardName = boardName)
 
@@ -195,7 +221,12 @@ def hardGame(boardName):
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
+            thisBoard = Board.query.filter_by(fileName=boardName).first()
+            thisBoard.largeScores = updateHS(thisBoard.largeScores, g.user.username, int(gameData['score']))
+            db.session.commit()
             return render_template('hardGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('hardGame.html', boardName = boardName)
 
@@ -206,7 +237,12 @@ def ultraGame(boardName):
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
+            thisBoard = Board.query.filter_by(fileName=boardName).first()
+            thisBoard.ultraScores = updateHS(thisBoard.ultraScores, g.user.username, int(gameData['score']))
+            db.session.commit()
             return render_template('ultraGame.html', boardName = boardName)
+    elif boardName is None:
+        redirect(url_for('mainPage'))
     else:
         return render_template('ultraGame.html', boardName = boardName)
 
