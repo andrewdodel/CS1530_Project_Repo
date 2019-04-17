@@ -1,0 +1,142 @@
+.crop {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 500px;
+    height: 500px;
+}
+
+.crop2 img{
+    width: 375px;
+    height: 375px;
+    float: right;
+}
+
+.pageLayout {
+    width: 100%;
+}
+
+.timerCell {
+    width: 25%;
+}
+
+.gameCell {
+    width: 50%;
+    align: center;
+}
+
+.pictureCell {
+    width: 25%;
+    vertical-align: top;
+}
+
+/* .gameTable {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+} */
+
+#t00 {
+    margin: 0 0 0 0;
+}
+
+#t01 {
+    margin: 0 0 0 -100px;
+}
+
+#t02 {
+    margin: 0 0 0 -200px;
+}
+
+#t03 {
+    margin: 0 0 0 -300px;
+}
+
+#t04 {
+    margin: 0 0 0 -400px;
+}
+
+#t10 {
+    margin: -100px 0 0 0;
+}
+
+#t11 {
+    margin: -100px 0 0 -100px;
+}
+
+#t12 {
+    margin: -100px 0 0 -200px;
+}
+
+#t13 {
+    margin: -100px 0 0 -300px;
+}
+
+#t14 {
+    margin: -100px 0 0 -400px;
+}
+
+#t20 {
+    margin: -200px 0 0 0;
+}
+
+#t21 {
+    margin: -200px 0 0 -100px;
+}
+
+#t22 {
+    margin: -200px 0 0 -200px;
+}
+
+#t23 {
+    margin: -200px 0 0 -300px;
+}
+
+#t24 {
+    margin: -200px 0 0 -400px;
+}
+
+#t30 {
+    margin: -300px 0 0 0;
+}
+
+#t31 {
+    margin: -300px 0 0 -100px;
+}
+
+#t32 {
+    margin: -300px 0 0 -200px;
+}
+
+#t33 {
+    margin: -300px 0 0 -300px;
+}
+
+#t34 {
+    margin: -300px 0 0 -400px;
+}
+
+#t40 {
+    margin: -400px 0 0 0;
+}
+
+#t41 {
+    margin: -400px 0 0 -100px;
+}
+
+#t42 {
+    margin: -400px 0 0 -200px;
+}
+
+#t43 {
+    margin: -400px 0 0 -300px;
+}
+
+#t44 {
+    margin: -400px 0 0 -400px;
+}

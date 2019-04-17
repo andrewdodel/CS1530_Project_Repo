@@ -121,12 +121,11 @@ def login():
 
     if request.method == 'POST':
         user = User.query.filter_by(username=request.form['user']).first()
-
-        print(user.lastSignInTime)
-        print(getCurrentTime())
         if user is None:
             error = 'Invalid username!'
         elif user.lastSignInTime is not None and user.lastSignInTime > getCurrentTime() - 7:
+            user.lastSignInTime = getCurrentTime()
+            db.session.commit()
             error = 'Incorrect password was recently entered! Wait a few seconds before trying again!'
         elif user.password == hashlib.md5(request.form['pass'].encode()).hexdigest():
             session['userId'] = user.userId
@@ -134,9 +133,9 @@ def login():
             db.session.commit()
             return redirect(url_for('mainPage', username=user.username))
         else:
+            user.lastSignInTime = getCurrentTime()
+            db.session.commit()
             error = 'Error! Double-check your password'
-    user.lastSignInTime = getCurrentTime()
-    db.session.commit()
     return render_template('login.html', error=error)
 
 
@@ -168,48 +167,48 @@ def guide():
     return render_template('guide.html')
 
 
-@app.route('/easyGame/', methods=['GET', 'POST'])
-def easyGame():
+@app.route('/easyGame/<boardName>', methods=['GET', 'POST'])
+def easyGame(boardName):
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
-            return render_template('easyGame.html')
+            return render_template('easyGame.html', boardName = boardName)
     else:
-        return render_template('easyGame.html')
+        return render_template('easyGame.html', boardName = boardName)
 
 
-@app.route('/mediumGame/', methods=['GET', 'POST'])
-def mediumGame():
+@app.route('/mediumGame/<boardName>', methods=['GET', 'POST'])
+def mediumGame(boardName):
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
-            return render_template('mediumGame.html')
+            return render_template('mediumGame.html', boardName = boardName)
     else:
-        return render_template('mediumGame.html')
+        return render_template('mediumGame.html', boardName = boardName)
 
 
-@app.route('/hardGame/', methods=['GET', 'POST'])
-def hardGame():
+@app.route('/hardGame/<boardName>', methods=['GET', 'POST'])
+def hardGame(boardName):
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
-            return render_template('hardGame.html')
+            return render_template('hardGame.html', boardName = boardName)
     else:
-        return render_template('hardGame.html')
+        return render_template('hardGame.html', boardName = boardName)
 
 
-@app.route('/ultraGame/', methods=['GET', 'POST'])
-def ultraGame():
+@app.route('/ultraGame/<boardName>', methods=['GET', 'POST'])
+def ultraGame(boardName):
     if request.method == 'POST':
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
-            return render_template('ultraGame.html')
+            return render_template('ultraGame.html', boardName = boardName)
     else:
-        return render_template('ultraGame.html')
+        return render_template('ultraGame.html', boardName = boardName)
 
 
 @app.route('/selectGame/', methods=['GET', 'POST'])
@@ -221,13 +220,13 @@ def selectGame():
         if boardName is None or thisBoard is None:
             return render_template('selectGame.html', error="Select a valid game board before beginning!")
         if boardDifficulty == "easy":
-            return redirect(url_for('easyGame', board=thisBoard.fileName))
+            return redirect(url_for('easyGame', boardName=thisBoard.fileName))
         elif boardDifficulty == "medium":
-            return redirect(url_for('mediumGame', board=thisBoard.fileName))
+            return redirect(url_for('mediumGame', boardName=thisBoard.fileName))
         elif boardDifficulty == "hard":
-            return redirect(url_for('hardGame', board=thisBoard.fileName))
+            return redirect(url_for('hardGame', boardName=thisBoard.fileName))
         elif boardDifficulty == "ultra":
-            return redirect(url_for('ultraGame', board=thisBoard.fileName))
+            return redirect(url_for('ultraGame', boardName=thisBoard.fileName))
         else:
             return redirect(url_for('mainPage'))
     else:
