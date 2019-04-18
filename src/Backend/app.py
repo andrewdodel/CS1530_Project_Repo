@@ -184,21 +184,6 @@ def easyGame(boardName):
     else:
         return render_template('easyGame.html', boardName = boardName)
 
-@app.route('/easyGameWin/', methods=['GET', 'POST'])
-def easyGameWin():
-    if request.method == 'POST':
-        if g.user is not None:
-            gameData = request.json
-            print(gameData['score'])
-            score = gameData['score']
-            boardName = gameData['boardName']
-            thisBoard = Board.query.filter_by(fileName=boardName).first()
-            thisBoard.smallScores = updateHS(thisBoard.smallScores, g.user.username, int(gameData['score']))
-            db.session.commit()
-            return render_template('easyGame.html', boardName = boardName)
-    else:
-        return render_template('mainPage.html')
-
 
 @app.route('/mediumGame/<boardName>', methods=['GET', 'POST'])
 def mediumGame(boardName):
@@ -280,10 +265,10 @@ def highscore():
                                    nameList=getNameList())
         else:
             thisBoard = Board.query.filter_by(name=boardName).first()
-            el = reversed(thisBoard.smallScores.split(" "))
-            ml = reversed(thisBoard.medScores.split(" "))
-            hl = reversed(thisBoard.largeScores.split(" "))
-            ul = reversed(thisBoard.ultraScores.split(" "))
+            el = thisBoard.smallScores.split(" ")
+            ml = thisBoard.medScores.split(" ")
+            hl = thisBoard.largeScores.split(" ")
+            ul = thisBoard.ultraScores.split(" ")
             return render_template('highscore.html', nameList=getNameList(), easyList=el, mediumList=ml, hardList=hl,ultraList=ul)
     else:
         return render_template('highscore.html', nameList=getNameList())
