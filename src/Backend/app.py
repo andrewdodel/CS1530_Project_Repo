@@ -174,6 +174,7 @@ def easyGame(boardName):
         if g.user is not None:
             gameData = request.json
             print(gameData['score'])
+            print(str(int(gameData['score'])))
             thisBoard = Board.query.filter_by(fileName=boardName).first()
             thisBoard.smallScores = updateHS(thisBoard.smallScores, g.user.username, int(gameData['score']))
             db.session.commit()
@@ -349,11 +350,11 @@ def uploaded_file(filename):
 
 def updateHS(bigString, user, score):
     usList = bigString.split(" ")
-    print(usList)
     retString = ""
     scoreList = [(each[0:each.find('-')], each[each.find('-') + 1:]) for each in usList]
 
-    for i in range(10):
+
+    for i in range(1, 11):
         if i >= len(scoreList):
             scoreList.insert(i, (score, user))
             break
@@ -361,9 +362,13 @@ def updateHS(bigString, user, score):
             scoreList.insert(i, (score, user))
             break
 
+    print(scoreList)
+
     for i in range(10):
         if i >= len(scoreList):
             break
+        elif scoreList[i][0] == '':
+            print("skip)")
         else:
             retString = retString + " " + str(scoreList[i][0]) + "-" + str(scoreList[i][1])
 
