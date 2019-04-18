@@ -308,7 +308,7 @@ function move(direction)
             //do nothing
           }
         };
-        var data = JSON.stringify({"score": timeElapsed/1000, "boardName": bName});
+        var data = JSON.stringify({"score": Math.floor(timeElapsed/1000), "boardName": bName});
         xhr.send(data);
 		alert(bName);
       }
