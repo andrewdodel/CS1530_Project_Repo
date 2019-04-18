@@ -186,6 +186,7 @@ var puzzleLength = 3;
 var puzzle = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
 var completed = [[[0,0],[0,1],[0,2]],[[1,0],[1,1],[1,2]],[[2,0],[2,1],[2,2]]];
 var image = "/static/{{ boardName }}";
+var bName = "{{ boardName }}";
 start = false;
 document.getElementById("t21").addEventListener("click", moveLeft);
 document.getElementById("t12").addEventListener("click", moveUp);
@@ -211,7 +212,8 @@ var intervalVar = setInterval(function(){
 }, 1000)
 
 // direction: the direction the BLANK tile is moving in. 0: Up, 1: Left, 2: Right, 3: Down
-function move(direction) {
+function move(direction) 
+{
     console.log("move");
     if (document.getElementById("moveSound").paused) {
       if(document.getElementById("muteCheck").checked != true){
@@ -286,7 +288,8 @@ function move(direction) {
     console.log(y);
     console.log(x);
     //Check if board is solved AFTER all previous code is executed
-    setTimeout(function () {
+    setTimeout(function () 
+	{
       if (isCompleted() && start && !hasWon) {
         hasWon = true;
         clearInterval(intervalVar);
@@ -295,7 +298,7 @@ function move(direction) {
         }
         alert("Congratulations, you won!");
         var xhr = new XMLHttpRequest();
-        var url = "http://127.0.0.1:5000/easyGame/{{ boardName }}";
+        var url = "http://127.0.0.1:5000/easyGame/" + bName;
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
@@ -304,8 +307,9 @@ function move(direction) {
             //do nothing
           }
         };
-        var data = JSON.stringify({"score": timeElapsed/1000, "boardName": image});
+        var data = JSON.stringify({"score": timeElapsed/1000, "boardName": bName});
         xhr.send(data);
+		alert(bName);
       }
     }, 1);
 }
