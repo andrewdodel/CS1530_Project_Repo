@@ -5,16 +5,135 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/static/special/css.3x3.css">
 </head>
+<style>
+			body{
+				background-image:  url("/static/special/image/mainBack.jpg");
+				background-repeat: no-repeat;
+				background-position: right top;
+				background-attachment: fixed;
+				background-size: cover;
+			}
+			.buttonUser{
+				background-color: transparent;
+				height: 35px;
+				width: 150px;
+				border-radius: 10px;
+				border-color: white;
+				font-family: Arial;
+				color: white;
+				font-size: 15px;
+				text-align: center;
+				-webkit-transition-duration:0.4s;
+				transition-duration:0.4s;
+			}
+			.button1{
+				border-color: white;
+				color:white;
+				position: absolute;
+				top: 0;
+				right:0;
+				display:block;
+			}
+			.button1:hover{
+				text-decoration: underline;
+			}
+			.button2{
+				border-color: white;
+				color:white;
+				position: absolute;
+				top: 37px;
+				right:0;
+				display:block;
+			}
+			.button2:hover{
+				text-decoration: underline;
+			}
+			.menubutton{
+				height: 40px;
+				width: 400px;
+				display:block;	
+				border-radius: 10px;
+				font-family: Arial;
+				text-align: center;
+				text-decoration: none;
+				-webkit-transition-duration:0.4s;
+				transition-duration:0.4s;
+				margin:0 auto;
+				margin-top: 50px;
+			}
+			.mbutton1{
+				margin-top: 70px;
+			}
+			.container.gallery-container {
+				background-color: #fff;
+				color: #35373a;
+				min-height: 100vh;
+				border-radius: 20px;
+				box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+			}
+
+			.gallery-container h1 {
+				text-align: center;
+				margin-top: 70px;
+				font-family: 'Droid Sans', sans-serif;
+				font-weight: bold;
+			}
+
+			.gallery-container p.page-description {
+				text-align: center;
+				max-width: 800px;
+				margin: 25px auto;
+				color: #888;
+				font-size: 18px;
+			}
+
+			.tz-gallery {
+				padding: 40px;
+			}
+
+			.tz-gallery .lightbox img {
+				width: 100%;
+				margin-bottom: 30px;
+				transition: 0.2s ease-in-out;
+				box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+			}
+
+
+			.tz-gallery .lightbox img:hover {
+				transform: scale(1.05);
+				box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+			}
+
+			.tz-gallery img {
+				border-radius: 4px;
+			}
+
+			.baguetteBox-button {
+				background-color: transparent !important;
+			}
+
+
+			@media(max-width: 768px) {
+				body {
+					padding: 0;
+				}
+
+				.container.gallery-container {
+					border-radius: 0;
+				}
+			}
+		</style>
 <body>
 
 <audio id="winSound" src="/static/special/crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="/static/special/open_door_2.mp3" preload="auto"></audio>
 
 <table class = "pageLayout">
-  <tr>
-    <td class = "timerCell" align = center>
-        <p id="timer">0:00</p>
-        <div align = center>Mute:<input type="checkbox" id="muteCheck"></div>
+  <tr class = "div">
+    <td class = "timerCell" align = center bgcolor="white">
+		<h2> Current Time </h2>
+        <p id="timer"></p>
+        <div align = center><h2>Mute:</h2><input type="checkbox" id="muteCheck"></div>
     </td>
     <td class = "gameCell">
         <table class = "gameTable" align = center>
@@ -174,7 +293,7 @@ function move(direction) {
         if(document.getElementById("muteCheck").checked != true){
           document.getElementById("winSound").play();
         }
-        alert("Congrats, done");
+        alert("Congratulations, you won!");
         var xhr = new XMLHttpRequest();
         var url = "http://127.0.0.1:5000/easyGame/{{ boardName }}";
         xhr.open("POST", url, true);
