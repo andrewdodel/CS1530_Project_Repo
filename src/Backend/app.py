@@ -280,9 +280,11 @@ def highscore():
                                    nameList=getNameList())
         else:
             thisBoard = Board.query.filter_by(name=boardName).first()
-            return render_template('highscore.html', nameList=getNameList(), easyList=thisBoard.smallScores.split(" "),
-                                   mediumList=thisBoard.medScores.split(" "), hardList=thisBoard.largeScores.split(" "),
-                                   ultraList=thisBoard.ultraScores.split(" "))
+            el = reversed(thisBoard.smallScores.split(" "))
+            ml = reversed(thisBoard.medScores.split(" "))
+            hl = reversed(thisBoard.largeScores.split(" "))
+            ul = reversed(thisBoard.ultraScores.split(" "))
+            return render_template('highscore.html', nameList=getNameList(), easyList=el, mediumList=ml, hardList=hl,ultraList=ul)
     else:
         return render_template('highscore.html', nameList=getNameList())
 
