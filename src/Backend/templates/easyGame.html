@@ -310,7 +310,6 @@ function move(direction)
         };
         var data = JSON.stringify({"score": Math.floor(timeElapsed/1000), "boardName": bName});
         xhr.send(data);
-		alert(bName);
       }
     }, 1);
 }
