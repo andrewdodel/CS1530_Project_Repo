@@ -13,6 +13,9 @@
       background-attachment: fixed;
       background-size: cover;
     }
+    h1{
+        text-align: center;
+      }
     .buttonUser{
       background-color: transparent;
       height: 35px;
@@ -128,12 +131,15 @@
 <audio id="winSound" src="/static/special/crowdapplause.mp3" preload="auto"></audio>
 <audio id="moveSound" src="/static/special/open_door_2.mp3" preload="auto"></audio>
 
+<h1 id = "gameTitle"></h1>
+
 <table class = "pageLayout">
     <tr class = "div">
       <td class = "timerCell" align = center bgcolor="white">
           <h2> Current Time </h2>
           <p id="timer"></p>
           <div align = center><h2>Mute:</h2><input type="checkbox" id="muteCheck"></div>
+          <a href={{ url_for('mainPage')}}><h2>Main Page</h2></a>
       </td>
       <td class = "gameCell">
           <table class = "gameTable" align = center>
@@ -236,6 +242,7 @@ var completed = [
   ];
 var image = "/static/{{ boardName }}";
 var bName = "{{ boardName }}";
+document.getElementById("gameTitle").innerHTML = bName;
 start = false;
 document.getElementById("t65").addEventListener("click", moveLeft);
 document.getElementById("t56").addEventListener("click", moveUp);
